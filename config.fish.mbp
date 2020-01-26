@@ -1,0 +1,37 @@
+function code
+   set location "$PWD/$argv"
+   open -n -b "com.microsoft.VSCode" --args $location
+end
+
+function golang
+    set location "$PWD/$argv"
+    open -n -b "com.jetbrains.goland" --args $location
+end
+
+function mkd
+    mkdir $argv
+    cd $argv
+end
+
+set fish_greeting 'Tri-Drive System Locking Mode.'
+
+alias gblx="env ~CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build"
+set -x PATH /Users/gawainx/miniconda3/bin $HOME/.cargo/bin /usr/local/opt/go  /Users/gawainx/go/bin $PATH
+# set -x GOROOT /usr/local/go
+set -x GOROOT /usr/local/opt/go
+set -x GOPATH /Users/gawainx/go
+set -x GO111MODULE on
+set -x LC_ALL en_US.UTF-8
+set -x MXNET_GLUON_REPO https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/
+# set -x DOCKER_API_VERSION 1.35
+
+alias cg="cd $GOPATH/src"
+alias ungit="rm -rf .git/"
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /Users/gawainx/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
